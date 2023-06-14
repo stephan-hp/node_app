@@ -1,0 +1,456 @@
+<body class="nav-md">
+
+    <div class="container body">
+        <div class="main_container">
+
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a href="#" class="site_title"><i class="glyphicon glyphicon-education"></i> <span> EGREX</span></a>
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <!-- USER INFO -->
+                    <div class="profile">
+                        <div class="profile_pic">
+                            <img src="images/user_img/{{user.user_session_id}}.jpg" alt="..." class="img-circle profile_img">
+                        </div>
+                        <div class="profile_info">
+                            <span>Bienvenido,</span>
+                            <h2>{{user.nombre}} {{user.apellidos}} </h2>
+                            
+                        </div>
+                    </div>
+                    <!-- /USER INFO -->
+
+                    <br />
+
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+
+                        <div class="menu_section">
+                              <!-- ROL NAME -->
+                            <h3>Profesor Principal</h3> 
+                            <br>
+                            <ul class="nav side-menu">
+                                <li><a><i class="fa fa-home"></i> Menú <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu" style="display: none">
+                                        <li><a href="/profesor_principal">Inicio</a>
+                                        <li><a href="/profesor_principal_asignar">Gestionar ubicaciones laborales</a>
+                                        </li>
+                                        <li><a href="/profesor_principal_inconformidades">Consultar inconformidades</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <!-- top navigation -->
+            <div class="top_nav">
+
+                <div class="nav_menu">
+                    <nav class="" role="navigation">
+                        <div class="nav toggle">
+                            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                        </div>
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="">
+                                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <img src="images/user_img/{{user.user_session_id}}.jpg" alt=""> {{user.nombre}} {{user.apellidos}} 
+                                    <span class=" fa fa-angle-down"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
+                                    <li><a href="/logout"><i class="fa fa-sign-out pull-right"></i> Desconectar</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+            </div>
+            <!-- /top navigation -->
+
+            <!-- page content -->
+            <div class="right_col" role="main">
+                <div class="">
+                    <div class="page-title">
+                        <div class="title">
+                            <h3>Gestión de ubicaciones laborales</h3>
+                            <br>
+                        </div>
+                        <div class="title_right">
+                            <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                                <div class="input-group">
+                        </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <div class="">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="x_panel">
+                                <div class="x_title">
+                                    <h2>Tabla de asignación de ubicación laboral</h2>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content">
+                                    
+                                    <table id="example" class="table table-striped responsive-utilities jambo_table">
+                                        <thead>
+                                            <tr class="headings">
+                                                <th>  
+                                                </th>
+                                                <th>Nombre </th>
+                                                <th>Apellidos </th>
+                                                <th>Ubicación Laboral </th>
+                                                <th>Inconforme </th>
+                                               
+                                            </tr>
+                                        </thead>
+                                    
+                                        <tbody>
+                                            {{#each table}}
+                                            <tr class="even pointer ">
+                                                <td class="a-center ">
+                                                    <input type="checkbox" class="tableflat" value="{{userid}}" name="table_records" class="">
+                                                </td>
+                                                <td class=" ">{{nombre}}</td>
+                                                <td class=" ">{{apellidos}}</td>
+                                                <td class=" ">{{ubicacion_laboral}}</td>
+                                                <td class=" ">{{inconforme}}</td>
+                                            </tr>
+                                            {{/each}} 
+                                        </tbody>
+                                    
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="x_panel">
+                                <div class="x_title">
+                                    <h2>Asignar o modificar ubicación laboral <small> </small></h2>
+                                    
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content collapsable collapse">
+                                    <br />
+                                    <form id="demo-form2" action="" method="post" class="form-horizontal form-label-left">
+
+                                        <div class="form-group">                                            
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="ubic-lab">Nueva Ubicación Laboral: <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <select id="ubic-lab" name="ubic_lab_p" class="form-control col-md-7 col-xs-12" required>
+                                                    <option value="pers"> <span> Personalizada </span> </option>
+                                                    <option value="No asignada">No asignada</option>
+                                                    {{#each ubicaciones}}
+                                                    <option value="{{ubicacion_laboral}}">{{ubicacion_laboral}}</option>
+                                                    {{/each}}
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <input type="hidden" id="selection_input" value="" name="user_mod_id">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="ubic">Ubicación Personalizada: <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <input type="text" id="ubic-lab-pers" name="ubic_lab" required data-parsley-pattern="^[a-zA-Z0-9\s\-]+$" data-parsley-pattern-message="La ubicación laboral no puede tener caracteres especiales" data-parsley-required-message="Completa este campo"  class="form-control col-md-7 col-xs-12">
+                                            </div>
+                                        </div>
+                                        <div class="ln_solid"></div>
+                                        <div class="form-group">
+                                            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                                <button type="submit" class="btn btn-success">Guardar cambios</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="x_panel">
+                                <div class="x_title">
+                                <h2>Plantilla de Aceptación<small> </small></h2>
+                                    
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content collapsable collapse">
+                                <div id="alerts"></div>
+                                
+                                <div id="editor">
+
+                                  <h2 style="text-align: center;"><b><font size="5"><img src="/images/uci.jpeg" alt=""><br></font></b></h2>
+                                  <h2 style="text-align: center;"><b><font size="5">Planilla de Aceptación</font>
+                                  </b></h2><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div>
+                                    <b><font size="5"><br></font></b></div></blockquote>
+                                    <blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div>
+                                        <font size="3">Nombre y Apellidos: <span id="nomb_est" style="font-size: medium;"> </span></font></div><div><br></div><div>
+                                            <font size="3">Ubicacion Laboral: <span id="ubic_asignada" style="font-size: medium;"> </span></font></div><div><br></div><div>
+                                                <font size="3">Nombre del Profesor Principal: <span id="nomb_prof" style="font-size: medium;"> </span></font></div><div>
+                                                    <font size="3"><br></font></div><div style="text-align: left;">
+                                                        <font size="3">El Estudiante asume, mediante la&nbsp; firma&nbsp; de&nbsp; este documento,&nbsp; su&nbsp; apelación&nbsp; a la&nbsp; ubicación laboral asignada con carácter irrevocable. En caso de presentar una inconformidad&nbsp;</font>
+                                                        <span style="font-size: medium;">durante el proceso de asignación de la ubicación laboral, se puede documentar la misma, conjunto con esta plantilla en formato de copia dura.</span></div><div style="text-align: justify;"><font size="3"><br></font></div><div><font size="3"><br>
+                                                        </font></div><div><font size="3"><br></font></div><div><font size="3"><br>
+                                                        </font></div><div><font size="3">__________________&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; __________________</font>
+                                                        </div><div><span style="font-size: medium;">&nbsp;Firma del Estudiante&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Firma del Profesor Principal</span></div>
+                                                        </blockquote>
+
+                                </div>
+                                
+                            
+                                <textarea name="descr" id="descr" style="display:none;">
+                                </textarea>
+                                <br />
+                                <div class="form-group">
+                                    <div class="col-md-6 col-sm-6 col-xs-12 ">
+                                        <button type="button" id="btnExportarPdf" class="btn btn-success">Exportar</button>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="ln_solid"></div>
+                                
+                                <br />
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- footer content -->
+                <footer>
+                    <div class="">
+                        <p class="pull-right"> Sistema de Gestión de Egresados de la Facultad 4 de la <a href="https://www.uci.cu">UCI</a> <a href="mailto:stephanhp@estudiantes.uci.cu;ransetmv@estudiantes.uci.cu;osmanibm@estudiantes.uci.cu"> Equipo de Ingeniería de Software II</a>.
+                            <span class="lead"> <i class="glyphicon glyphicon-education"></i> EGREX</span>
+                        </p>
+                    </div>
+                    <div class="clearfix"></div>
+                </footer>
+                <!-- /footer content -->
+            </div>
+            <!-- /page content -->
+
+        </div>
+
+    </div>
+          <script>
+        // Función para generar el PDF
+        $("#btnExportarPdf").click(function() {
+         const contenidoDiv = $("#editor").html();
+           const ventanaImpresion = window.open('', 'Imprimir', 'height=500,width=500');
+           ventanaImpresion.document.write(`<html><head><title>Plantilla</title></head><body>${contenidoDiv}</body></html>`);
+           ventanaImpresion.document.close();
+           ventanaImpresion.focus();
+           ventanaImpresion.print();
+           ventanaImpresion.close();
+         });
+        </script>
+
+        <!-- Manipular datos -->
+        <script>
+            $(document).ready(function() {
+            
+                // Obtiene una referencia a todos los checkboxes de la tabla
+                var checkboxes = $('input[name="table_records"]');
+                const $panel = $('.collapsable');
+                // Escucha el evento click en los checkboxes
+                checkboxes.on('click', function() {
+                    // Si el checkbox está seleccionado, desmarca los demás checkboxes y rellenar form
+                    if ($(this).prop('checked')) {
+                        $('#ubic-lab').val('pers');
+                            $('#ubic-lab-pers').prop('disabled', false);
+                            $('#ubic-lab-pers').prop('required', true);
+                        $panel.removeClass('collapse').addClass('show');
+                        for (var i = 0; i < checkboxes.length; i++) {
+                            if (checkboxes[i] !== this) {
+                                checkboxes[i].checked = false;
+                            }
+                        }
+                        const $fila = $(this).closest('tr');
+                        const id = $(this).val();
+                        const ubic = $fila.find('td:nth-of-type(4)').text();
+                        $('#nomb_est').text($fila.find('td:nth-of-type(2)').text() + ' ' + $fila.find('td:nth-of-type(3)').text());
+                        $('#ubic_asignada').text(ubic);
+                        $('#nomb_prof').text('{{user.nombre}} {{user.apellidos}}');
+                        $('#selection_input').val(id);
+                             $('#ubic-lab').val(ubic);
+                            $('#ubic-lab-pers').prop('disabled', true);
+                            $('#ubic-lab-pers').prop('required', false);
+                    } else {
+                        $panel.removeClass('show').addClass('collapse');
+                        $('#ubic-lab').val('pers');
+                            $('#ubic-lab-pers').prop('disabled', false);
+                            $('#ubic-lab-pers').prop('required', true);
+                    }
+                });
+            });
+            $(function() {
+                $('#ubic-lab').on('change', function() {
+                    if ($(this).val() === 'No asignada') showDialog();
+                    if ($(this).val() === 'pers') {
+                        $('#ubic-lab-pers').prop('disabled', false);
+                        $('#ubic-lab-pers').prop('required', true);
+                        $('#ubic-lab').attr('name', 'ubic_lab_p');
+                        $('#ubic-lab-pers').attr('name', 'ubic_lab');
+                    } else {
+                        $('#ubic-lab-pers').prop('disabled', true);
+                        $('#ubic-lab-pers').prop('required', false);
+                        $('#ubic-lab').attr('name', 'ubic_lab');
+                        $('#ubic-lab-pers').attr('name', 'ubic_lab_p');
+                    }
+                });
+            });
+        </script>
+
+        <script>
+                var asInitVals = new Array();
+            $(document).ready(function () {
+                var oTable = $('#example').dataTable({
+                    "oLanguage": {
+                        "sEmptyTable": "No hay datos para mostrar",
+                        "sSearch": "Búsqueda rápida:"
+                    },
+                    "aoColumnDefs": [
+                        {
+                            'bSortable': false,
+                            'aTargets': [0]
+                        }
+                                    ],
+                    'iDisplayLength': 4,
+                    "sPaginationType": "full_numbers",
+                    "dom": 'T<"clear">lfrtip',
+                    drawCallback: function(settings) {
+                     $('select[name="example_length"]').prepend('<option value="4">4</option>');
+                     $('select[name="example_length"]').val( settings._iDisplayLength );
+                     }
+                });
+                $("tfoot input").keyup(function () {
+                    oTable.fnFilter(this.value, $("tfoot th").index($(this).parent()));
+                });
+                $("tfoot input").each(function (i) {
+                    asInitVals[i] = this.value;
+                });
+                $("tfoot input").focus(function () {
+                    if (this.className == "search_init") {
+                        this.className = "";
+                        this.value = "";
+                    }
+                });
+                $("tfoot input").blur(function (i) {
+                    if (this.value == "") {
+                        this.className = "search_init";
+                        this.value = asInitVals[$("tfoot input").index(this)];
+                    }
+                });
+            });
+            
+        </script> 
+        <!-- Validar formularios -->
+        <script type="text/javascript">
+        $('#demo-form2').parsley();
+        </script>
+
+        <!-- editor -->
+        <script>
+            $(document).ready(function () {
+                $('.xcxc').click(function () {
+                    $('#descr').val($('#editor').html());
+                });
+            });
+
+            $(function () {
+                function initToolbarBootstrapBindings() {
+                    var fonts = ['Serif', 'Sans', 'Arial', 'Arial Black', 'Courier',
+                'Courier New', 'Comic Sans MS', 'Helvetica', 'Impact', 'Lucida Grande', 'Lucida Sans', 'Tahoma', 'Times',
+                'Times New Roman', 'Verdana'],
+                        fontTarget = $('[title=Font]').siblings('.dropdown-menu');
+                    $.each(fonts, function (idx, fontName) {
+                        fontTarget.append($('<li><a data-edit="fontName ' + fontName + '" style="font-family:\'' + fontName + '\'">' + fontName + '</a></li>'));
+                    });
+                    $('a[title]').tooltip({
+                        container: 'body'
+                    });
+                    $('.dropdown-menu input').click(function () {
+                            return false;
+                        })
+                        .change(function () {
+                            $(this).parent('.dropdown-menu').siblings('.dropdown-toggle').dropdown('toggle');
+                        })
+                        .keydown('esc', function () {
+                            this.value = '';
+                            $(this).change();
+                        });
+
+                    $('[data-role=magic-overlay]').each(function () {
+                        var overlay = $(this),
+                            target = $(overlay.data('target'));
+                        overlay.css('opacity', 0).css('position', 'absolute').offset(target.offset()).width(target.outerWidth()).height(target.outerHeight());
+                    });
+                    if ("onwebkitspeechchange" in document.createElement("input")) {
+                        var editorOffset = $('#editor').offset();
+                        $('#voiceBtn').css('position', 'absolute').offset({
+                            top: editorOffset.top,
+                            left: editorOffset.left + $('#editor').innerWidth() - 35
+                        });
+                    } else {
+                        $('#voiceBtn').hide();
+                    }
+                };
+
+                function showErrorAlert(reason, detail) {
+                    var msg = '';
+                    if (reason === 'unsupported-file-type') {
+                        msg = "Formato no soportado " + detail;
+                    } else {
+                        console.log("error subiendo archivo...", reason, detail);
+                    }
+                    $('<div class="alert"> <button type="button" class="close" data-dismiss="alert">&times;</button>' +
+                        '<strong>Ha ocurrido un error</strong> ' + msg + ' </div>').prependTo('#alerts');
+                };
+                initToolbarBootstrapBindings();
+                $('#editor').wysiwyg({
+                    fileUploadError: showErrorAlert
+                });
+                window.prettyPrint && prettyPrint();
+            });
+        </script>
+        <!-- /editor -->
+        
+        <!-- Script para mostrar la confirmación de envío -->
+               <script>
+            function showDialog() {
+                if ($('#ubic-lab').val() === 'No asignada') {
+                    Swal.fire({
+                        title: '¿Estás seguro que deseas eliminar la asignación de la ubicación laboral?',
+                        text: 'Se perderán los datos relacionados con la unicación laboral asignada',
+                        icon: 'question',
+                        showCancelButton: true,
+                        confirmButtonText: 'Aceptar',
+                        cancelButtonText: 'Cancelar'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Si el usuario hizo clic en "Sí, enviar", enviar el formulario
+
+                        } else {
+                            $('#ubic-lab').val('pers');
+                            $('#ubic-lab-pers').prop('disabled', false);
+                        }
+                    });
+                } else {}
+            }
+        </script>
+</body>

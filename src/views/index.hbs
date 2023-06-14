@@ -1,0 +1,56 @@
+<body style="background:#F7F7F7;">
+
+    <div class="">
+        <a class="hiddenanchor" id="toregister"></a>
+        <a class="hiddenanchor" id="tologin"></a>
+        <div id="wrapper">
+            <div id="login" class="animate form">
+                <section class="login_content">
+                    <form action="/access" class="demo-form" method="POST">
+                        <h1><i class="glyphicon glyphicon-education" style="font-size: 26px;"></i> EGREX</h1>
+                        <br>
+                        <div>
+                            <input type="text" id="user" name="username" class="form-control"  data-parsley-required-message="Completa este campo"  placeholder="Nombre de usuario" required />
+                        </div>
+                        <div>
+                            <input type="password" id="pass" name="passw" class="form-control"  data-parsley-required-message="Completa este campo"  placeholder="Contraseña" required />
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-default submit" >Iniciar sesión</button>
+                        </div>
+                        <br>
+                        <div class="clearfix"></div>
+                        <div class="separator">
+                            <div class="clearfix"></div>
+                            <br />
+                            <br>
+                            <div>
+                                
+                                <p>©2023 EGREX - Sistema de Gestión de Egresados de la Facultad 4 de la <a href="https://www.uci.cu">UCI</a></p>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- form -->
+                </section>
+                <!-- content -->
+            </div>
+        </div>
+    </div>
+
+        <!-- form validation -->
+    <link rel="stylesheet" href="css/sweetalert2.min.css">
+    <script src="js/sweetalert2.min.js"></script>
+    {{#if user_error}}
+    <script>
+        $(document).ready(function() {
+            Swal.fire({
+                title: 'Su usuario no es válido o no tiene permiso para acceder al sistema!',
+                text: '',
+                icon: 'error',
+                confirmButtonText: 'Aceptar'
+            });
+        });
+    </script>
+    {{/if}}
+
+</body>

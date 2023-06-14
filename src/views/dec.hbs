@@ -1,0 +1,125 @@
+
+<body class="nav-md">
+
+    <div class="container body">
+        <div class="main_container">
+
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a href="#" class="site_title"><i class="glyphicon glyphicon-education"></i> <span> EGREX</span></a>
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <!-- USER INFO -->
+                    <div class="profile">
+                        <div class="profile_pic">
+                            <img src="images/user_img/{{user.user_session_id}}.jpg" alt="..." class="img-circle profile_img">
+                        </div>
+                        <div class="profile_info">
+                            <span>Bienvenido,</span>
+                            <h2>{{user.nombre}} {{user.apellidos}} </h2>
+                        </div>
+                    </div>
+                    <!-- /USER INFO -->
+
+                    <br />
+
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+
+                        <div class="menu_section">
+                              <!-- ROL NAME -->
+                            <h3>Decano </h3> 
+                            <br>
+                            <ul class="nav side-menu">
+                                <li><a><i class="fa fa-home"></i> Menú <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu" style="display: none">
+                                        <li><a href="/decano">Inicio</a>
+                                        <li><a href="/decano_asignar">Análsis de las ubicaciones laborales</a>
+                                        </li>
+                                        <li><a href="/decano_evaluar">Análsis del desempeño laboral</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <!-- top navigation -->
+            <div class="top_nav">
+
+                <div class="nav_menu">
+                    <nav class="" role="navigation">
+                        <div class="nav toggle">
+                            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                        </div>
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="">
+                                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <img src="images/user_img/{{user.user_session_id}}.jpg" alt=""> {{user.nombre}} {{user.apellidos}} 
+                                    <span class=" fa fa-angle-down"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
+                                    <li><a href="/logout"><i class="fa fa-sign-out pull-right"></i> Desconectar</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+            </div>
+            <!-- /top navigation -->
+
+            <!-- page content -->
+            <div class="right_col" role="main">
+                <div class="">
+                    <div class="page-title">
+                        <div class="title">
+                            <h3>Bienvenido al sistema, decano {{user.nombre}} </h3>
+                           <p> Consulte sus funcionalidades en el menú de la izquierda </p> 
+                            <br>
+                        </div>
+
+                        <div class="title_right">
+                            <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                                <div class="input-group">
+                        </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+
+                    
+                </div>
+                <div id="contenido" style="height: 800px;"></div>
+ 	                <script>
+                     $(document).ready(function() {
+                      $("#contenido").empty();
+                        });
+                   </script>
+                <!-- footer content -->
+                <footer>
+                    <div class="">
+                        <p class="pull-right"> Sistema de Gestión de Egresados de la Facultad 4 de la <a href="https://www.uci.cu">UCI</a> <a href="mailto:stephanhp@estudiantes.uci.cu;ransetmv@estudiantes.uci.cu;osmanibm@estudiantes.uci.cu"> Equipo de Ingeniería de Software II</a>.
+                            <span class="lead"> <i class="glyphicon glyphicon-education"></i> EGREX</span>
+                        </p>
+                    </div>
+                    <div class="clearfix"></div>
+                </footer>
+                <!-- /footer content -->
+            </div>
+            <!-- /page content -->
+
+        </div>
+
+    </div>
+
+</body>

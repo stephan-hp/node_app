@@ -1,0 +1,296 @@
+<body class="nav-md">
+
+    <div class="container body">
+        <div class="main_container">
+
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a href="#" class="site_title"><i class="glyphicon glyphicon-education"></i> <span> EGREX</span></a>
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <!-- USER INFO -->
+                    <div class="profile">
+                        <div class="profile_pic">
+                            <img src="images/user_img/{{user.user_session_id}}.jpg" alt="..." class="img-circle profile_img">
+                        </div>
+                        <div class="profile_info">
+                            <span>Bienvenido,</span>
+                            <h2>{{user.nombre}} {{user.apellidos}} </h2>
+                        </div>
+                    </div>
+                    <!-- /USER INFO -->
+
+                    <br />
+
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+
+                        <div class="menu_section">
+                              <!-- ROL NAME -->
+                            <h3>Estudiante graduado</h3> 
+                            <br>
+                            <ul class="nav side-menu">
+                               <li><a><i class="fa fa-home"></i> Menú <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu" style="display: none">
+                                        <li><a href="/estudiante_graduado">Inicio<a>
+                                        <li><a href="/estudiante_graduado_asignar">Gestionar mi ubicación laboral<a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <!-- top navigation -->
+            <div class="top_nav">
+
+                <div class="nav_menu">
+                    <nav class="" role="navigation">
+                        <div class="nav toggle">
+                            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                        </div>
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="">
+                                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <img src="images/user_img/{{user.user_session_id}}.jpg" alt=""> {{user.nombre}} {{user.apellidos}}
+                                    <span class=" fa fa-angle-down"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
+                                    <li><a href="/logout"><i class="fa fa-sign-out pull-right"></i> Desconectar</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- /top navigation -->
+
+
+            <!-- page content -->
+            <div class="right_col" role="main">
+                <div class="">
+                    <div class="page-title">
+                        <div class="title">
+                            <h3>Gestionar mi ubicación laboral asignada</h3>
+                            <br>
+                        </div>
+
+                        <div class="title_right">
+                            <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                                <div class="input-group">
+                        </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <div class="">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="x_panel">
+                                <div class="x_title">
+                                    <h2>Tabla de asignación de ubicación laboral</h2>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content">
+                                    <table id="example" class="table table-striped responsive-utilities jambo_table">
+                                        <thead>
+                                            <tr class="headings">
+                                                <th>Nombre </th>
+                                                <th>Apellidos </th>
+                                                <th>Ubicación Laboral asignada </th>
+                                                <th>Inconforme</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {{#each table}}
+                                            <tr class="even pointer selected">
+                                                <td class=" ">{{nombre}}</td>
+                                                <td class=" ">{{apellidos}}</td>
+                                                <td id="ubic_lab" class=" ">{{ubicacion_laboral}}</td>
+                                                <td class=" last">{{inconforme}}</td>
+                                            </tr>
+                                            {{/each}}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="">
+                    <div class="col-md-6 col-xs-12">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>Redactar inconformidad <small></small></h2>
+                                {{#if redactada}}
+                                    <ul class="nav navbar-right panel_toolbox">
+                                        <li><a id="redact_collapse" class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                        </li>
+                                    </ul>
+                                {{/if}}
+                               <div class="clearfix"></div>
+                            </div>
+                             {{#if redactada}}
+                            <div class="x_content">
+                                <form action="" method="post">
+                                 <input type="hidden" name="userid" value="{{user.user_session_id}}">
+                                 <label for="message">Redacte su inconformidad :</label>
+                                 <textarea id="message" required class="form-control" name="inconformidad" ></textarea>
+                                 <br/>
+                                 <button type="button" id="btn_submit" onclick="showDialog()" class="btn btn-primary"> Guardar Cambios </button>
+                                </form>
+                            </div>
+                             {{/if}}
+
+                             {{#if non_redactada}}
+                            <div class="x_content">
+                                {{#each inconformidad}}
+                                 <label for="message">Redacte su inconformidad :</label>
+                                 <textarea id="message" required="required" class="form-control"  name="inconformidad" disabled> {{inconformidad}} </textarea>
+                                 <br/>
+                                {{/each}}
+                            </div>
+                             {{/if}}
+
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 col-xs-12">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>Respuesta del Profesor Principal <small></small></h2>
+                            <div class="clearfix"></div>
+                            </div>
+                            {{#if respuesta}}
+                            {{#each inconformidad}}
+                            <div class="x_content">
+                                <form action=""></form>
+                                 <label for="message"><strong> {{nombre_profesor}}</strong> </label>
+                                 <textarea id="message" class="form-control" name="message" disabled> {{respuesta}} </textarea>
+                                 <br/>
+                                </form>
+                            </div>
+                            {{/each}}
+                            {{/if}}
+                        </div>
+                    </div>
+
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="x_panel">
+                                <div class="x_title">
+                                <h2>Planilla de Aceptación<small> </small></h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li><a id="planilla_collapse" class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                    </li>
+                                 </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <div id="alerts"></div>
+                                <div id="editor">
+                                  <h2 style="text-align: center;"><b><font size="5"><img src="/images/uci.jpeg" alt=""><br></font></b></h2>
+                                  <h2 style="text-align: center;"><b><font size="5">Planilla de Aceptación</font>
+                                  </b></h2><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div>
+                                    <b><font size="5"><br></font></b></div></blockquote>
+                                    <blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div>
+                                        <font size="3">Nombre y Apellidos: <span id="nomb_est" style="font-size: medium;"> </span></font></div><div><br></div><div>
+                                            <font size="3">Ubicacion Laboral: <span id="ubic_asignada" style="font-size: medium;"> </span></font></div><div><br></div><div>
+                                                <font size="3">Nombre del Profesor Principal: <span id="nomb_prof" style="font-size: medium;"> </span></font></div><div>
+                                                    <font size="3"><br></font></div><div style="text-align: left;">
+                                                        <font size="3">El Estudiante asume, mediante la&nbsp; firma&nbsp; de&nbsp; este documento,&nbsp; su&nbsp; apelación&nbsp; a la&nbsp; ubicación laboral asignada con carácter irrevocable. En caso de presentar una inconformidad&nbsp;</font>
+                                                        <span style="font-size: medium;">durante el proceso de asignación de la ubicación laboral, se puede documentar la misma, conjunto con esta plantilla en formato de copia dura.</span></div><div style="text-align: justify;"><font size="3"><br></font></div><div><font size="3"><br>
+                                                        </font></div><div><font size="3"><br></font></div><div><font size="3"><br>
+                                                        </font></div><div><font size="3">__________________&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; __________________</font>
+                                                        </div><div><span style="font-size: medium;">&nbsp;Firma del Estudiante&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Firma del Profesor Principal</span></div>
+                                                        </blockquote>
+                                </div>
+                                <textarea name="descr" style="display: none;" id="descr" ></textarea>
+                                <br />
+                                <div class="form-group">
+                                    <div class="col-md-6 col-sm-6 col-xs-12 "> 
+                                     <button type="button" id="btnExportarPdf" class="btn btn-success">Exportar</button>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="ln_solid"></div>
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <!-- footer content -->
+                <footer>
+                    <div class="">
+                        <p class="pull-right"> Sistema de Gestión de Egresados de la Facultad 4 de la <a href="https://www.uci.cu">UCI</a> <a href="mailto:stephanhp@estudiantes.uci.cu;ransetmv@estudiantes.uci.cu;osmanibm@estudiantes.uci.cu"> Equipo de Ingeniería de Software II</a>.
+                            <span class="lead"> <i class="glyphicon glyphicon-education"></i> EGREX</span>
+                        </p>
+                    </div>
+                    <div class="clearfix"></div>
+                </footer>
+                <!-- /footer content -->
+            </div>
+            <!-- /page content -->
+
+        </div>
+
+    </div>
+        <!-- textarea resize -->
+        <script>
+            autosize($('.resizable_textarea'));
+        </script>
+            
+        <script>
+        $("#btnExportarPdf").click(function() {
+         const contenidoDiv = $("#editor").html();
+           const ventanaImpresion = window.open('', 'Imprimir', 'height=500,width=500');
+           ventanaImpresion.document.write(`<html><head><title>Plantilla</title></head><body>${contenidoDiv}</body></html>`);
+           ventanaImpresion.document.close();
+           ventanaImpresion.focus();
+           ventanaImpresion.print();
+           ventanaImpresion.close();
+         });
+          $(document).ready(function() {
+             $('#planilla_collapse').trigger('click');
+             $('#redact_collapse').trigger('click');
+            if ($('#ubic_lab').text() == 'No asignada') {
+                $('#message').prop('disabled', true);
+                $('#btn_submit').hide();}
+            $('#nomb_est').text(' {{user.nombre}} {{user.apellidos}} ');
+            $('#ubic_asignada').text($('#ubic_lab').text());
+            $('#nomb_prof').text();
+          });
+        </script>
+
+        <script>
+            function showDialog() {
+                Swal.fire({
+                    title: '¿Estás seguro que deseas enviar la respuesta de la inconformidad?',
+                    text: 'Una vez enviado, no podrás modificar la información.',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonText: 'Sí, enviar',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Si el usuario hizo clic en "Sí, enviar", enviar el formulario
+                        document.querySelector('form').submit();
+                    }
+                });
+            }
+        </script>
+
+
+    <!-- /footer content -->
+</body>
