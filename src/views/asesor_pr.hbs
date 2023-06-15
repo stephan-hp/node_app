@@ -287,8 +287,8 @@
                         $('#user_id_input_2').val(id);
                         if (eval === 'Ninguna') { $('#evaluacion').val(eval); } else { $('#evaluacion').val(''); }
                         if (informe === 'Archivado'){
-                            $('#submit_btn').hide();
-                            $('#delete_input').val('true');
+                         //   $('#submit_btn').hide();
+                         //  $('#delete_input').val('true');
                             $('#desemp_file').prop('required', false);
                             $('#evaluacion').prop('required', false);
                             const pdfSrc = 'upload/informes/Plantilla_' + id + '.pdf';
@@ -297,12 +297,11 @@
                             $panel_b.removeClass('collapse').addClass('show');
                         } else {
                             $('#delete_btn').hide();
-                            $('#delete_input').val('false');
+                          //  $('#delete_input').val('false');
                         }
                     } else {
                         $panel_b.removeClass('show').addClass('collapse');
                         $panel.removeClass('show').addClass('collapse');
-                        $('#submit_btn').show();
                         $('#delete_btn').show();
                     }
                 });
@@ -329,6 +328,7 @@
                     }).then((result) => {
                         if (result.isConfirmed) {
                             // Si el usuario hizo clic en "Sí, enviar", enviar el formulario
+                            $('#delete_input').val('true');
                             document.querySelector('form').submit();
                         }
                     });

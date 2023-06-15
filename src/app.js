@@ -16,6 +16,7 @@ const path = require('path');
 //const mysql = require('mysql2');
 const sqlite3 = require('sqlite3').verbose();
 const multer = require('multer');
+const fs = require('fs');
 const auth_controller = require('./controllers/auth_controller');
 const desemp_lab_controller = require('./controllers/desemp_lab_controller');
 const ubic_lab_controller = require('./controllers/ubic_lab_controller');
@@ -30,10 +31,19 @@ const upload = multer({
             cb(null, './src/public/upload/informes');
         },
         filename: (req, file, cb) => {
-            const ext = path.extname(file.originalname);
-            // Utilizar el valor del input con el nombre del archivo
-            const fileName = 'plantilla_' + req.body.a_userid + ext;
-            cb(null, fileName);
+            const fileName = 'plantilla_' + req.body.a_userid + '.pdf';
+            const filePath = './src/public/upload/informes/' + fileName;
+            // Para verificar que existe el archivo y reemplazarlo en cuyo caso
+            fs.access(filePath, (err) => {
+                if (!err) {
+                    fs.unlink(filePath, (err) => {
+                        if (err) cb(err);
+                        else cb(null, fileName);
+                    });
+                } else {
+                    cb(null, fileName);
+                }
+            });
         }
     })
 });
